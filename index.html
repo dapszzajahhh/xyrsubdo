@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xyrsubdo</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <i class="fa-solid fa-cloud"></i>
+    <span>xyrsubdo</span>
+  </div>
+  <div class="live">
+    <span class="pulse"></span>
+    <span id="clock">--:--:--</span>
+  </div>
+</header>
+
+<main>
+  <section class="grid">
+    <div class="card">
+      <div class="card-head">
+        <i class="fa-solid fa-globe"></i>
+        <span>IP Address</span>
+      </div>
+      <div class="card-value" id="ip">loading…</div>
+      <div class="card-foot" id="isp">—</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Location</span>
+      </div>
+      <div class="card-value" id="loc">loading…</div>
+      <div class="card-foot" id="tz">—</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <i class="fa-solid fa-battery-three-quarters" id="batt-icon"></i>
+        <span>Battery</span>
+      </div>
+      <div class="card-value" id="batt">—</div>
+      <div class="card-foot" id="batt-status">—</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <i class="fa-regular fa-calendar"></i>
+        <span>Date</span>
+      </div>
+      <div class="card-value" id="date">—</div>
+      <div class="card-foot" id="day">—</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Create Subdomain</h2>
+        <p>Kelola DNS record langsung dari dashboard Cloudflare.</p>
+      </div>
+    </div>
+
+    <form id="create-form" autocomplete="off">
+      <div class="row">
+        <label class="field">
+          <span>Domain</span>
+          <div class="select-wrap">
+            <select id="zone" required>
+              <option value="">Memuat domain…</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Record Type</span>
+          <div class="select-wrap">
+            <select id="type" required>
+              <option value="A">A</option>
+              <option value="AAAA">AAAA</option>
+              <option value="CNAME">CNAME</option>
+              <option value="TXT">TXT</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          <span>Subdomain</span>
+          <div class="input-wrap">
+            <input id="name" type="text" placeholder="app" pattern="[a-zA-Z0-9\-\.]{1,63}" required>
+            <span class="suffix" id="suffix">.domain.com</span>
+          </div>
+        </label>
+
+        <label class="field">
+          <span id="content-label">IPv4 Address</span>
+          <div class="input-wrap">
+            <input id="content" type="text" placeholder="1.1.1.1" required>
+          </div>
+        </label>
+      </div>
+
+      <div class="switch-row" id="proxy-row">
+        <div class="switch-info">
+          <span>Cloudflare Proxy</span>
+          <small>Aktifkan untuk menyembunyikan origin IP.</small>
+        </div>
+        <button type="button" class="switch" id="proxy" aria-pressed="true" data-on="true">
+          <span class="knob"></span>
+        </button>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn ghost" id="refresh">
+          <i class="fa-solid fa-rotate"></i>
+          <span>Refresh</span>
+        </button>
+        <button type="submit" class="btn primary" id="submit">
+          <i class="fa-solid fa-plus"></i>
+          <span>Create Record</span>
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>DNS Records</h2>
+        <p id="records-count">—</p>
+      </div>
+      <button class="btn ghost small" id="reload">
+        <i class="fa-solid fa-arrows-rotate"></i>
+        <span>Reload</span>
+      </button>
+    </div>
+
+    <div class="records" id="records">
+      <div class="empty">
+        <i class="fa-regular fa-folder-open"></i>
+        <p>Belum ada data</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span></span>
+</div>
+
+<script src="script.js"></script>
+</body>
+  </html>
