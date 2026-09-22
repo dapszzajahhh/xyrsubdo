@@ -5,10 +5,15 @@ Website sederhana untuk membuat subdomain secara gratis.
 # Struktur
 
 xyrsubdo/
+
 ├── api/
+
 ├── .env.example
+
 ├── index.html
+
 ├── script.js
+
 └── style.css
 
 # Deploy
