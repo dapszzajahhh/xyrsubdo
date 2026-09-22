@@ -625,3 +625,28 @@ main {
     font-size: 15px;
   }
 }
+
+@media (max-width: 720px) {
+  body::before,
+  body::after {
+    filter: none;
+    opacity: 0.25;
+  }
+
+  .grain {
+    display: none;
+  }
+
+  .topbar,
+  .live,
+  .card,
+  .panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .card,
+  .panel {
+    background: rgba(255, 255, 255, 0.88);
+  }
+  }
